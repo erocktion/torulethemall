@@ -1,0 +1,165 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Rule Them All</title>
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+	<link rel="stylesheet" href="dist/remodal.css">
+	<link rel="stylesheet" href="dist/remodal-default-theme.css">
+	<link rel="stylesheet" href="css/jqueryqtip.css">
+	<link rel="icon" type="image/png" href="images/icon6.png">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<script src="dist/remodal.min.js"></script>
+	<script src="js/jqueryqtip.js"></script>	
+	<script src="js/incremental2.js"></script>
+	<script src="js/jquery.js"></script>
+</head>
+
+<body>
+<div data-remodal-id="modal">
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <h2>Help/Instructions</h2>
+  <p>
+		Begin by clicking the <img src="images/click.png" alt="" width="25px" height="25px"> until you have enough money to get your first job.
+		<br>After that you can choose to wait to be able to get another job or do some stuff on the side to make more money.
+		<br>
+		<br>Each job/promotion gives you money per second as well as influence per second.
+		<br>Influence is needed to get a better job.
+		<br>
+		<br>You can access this menu again by going to the options tab!
+  </p>
+  <br>
+	<button data-remodal-action="cancel" class="remodal-cancel" onclick="modals();">Don't Show Me This Again</button>
+  <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+</div>
+<div data-remodal-id="modalSave">
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <h2>Confirmation</h2>
+  <p>
+		Your current progress will be saved!
+  </p>
+  <br>
+	<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+  <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+</div>
+<div data-remodal-id="modalLoad">
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <h2>Confirmation</h2>
+  <p>
+		Are you sure you want to load your previous progress?
+		<br> Any unsaved progress will be lost!
+  </p>
+  <br>
+	<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+  <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+</div>
+<div data-remodal-id="modalReset">
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <h2>Confirmation</h2>
+  <p>
+		Are you want to reset your progress?
+		<br> You will lose everything if you do!
+	</p>
+  <br>
+	<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+  <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+</div>
+	<header class="col-12">
+		<div class="version">v0.2.0 beta</div>
+			<h1><img src="images/icon6.png" alt="" height="5%" width="5%"/>To Rule Them All<img src="images/icon6.png" alt="" height="5%" width="5%"/></h1>
+				<div class="col-3">
+					<span class="stat">Money: </span>
+					<span class="stat">$/sec: </span>
+				</div>
+				<div class="col-3">
+					<span class="stat2" id="money">0.00</span>
+					<span class="stat2" id="payPerTick">0.0</span>
+				</div>
+				<div class="col-3">
+					<span class="stat">Influence: </span>
+					<span class="stat">Infl./sec: </span>
+				</div>
+				<div class="col-3">
+					<span class="stat2" id="influence">0.0</span>
+					<span class="stat2" id="infPerTick">0.0</span>
+				</div>
+	</header>
+			
+	<div class="tabs col-8">
+		<ul class="tab-links">
+			<li class="active"><a href="#tab1">Occupation</a></li>
+			<li><a href="#tab2">Extra Income</a></li>
+			<!-- <li><a href="#tab3">Home</a></li> -->
+			<li><a href="#tab4">Stats</a></li>
+			<li><a href="#tab5">Options</a></li>
+		</ul>
+		
+	<div class="col-10 content">
+			<div id="tab1" class="tab active">
+			<h1>Occupation</h1>
+				<div id="minWageJob2">
+					<input type="button" disabled="disabled" id="minWageJob" class="btn" value="Minimum Wage job" onclick="job('minWageJob');">
+					<div class="label">Price of uniform: <span id="minWageJob.cost">25</span></div>
+				</div>
+				<div id="shiftLeader2" class="promotion">
+					<input type="button" disabled="disabled" id="shiftLeader" class="btn" value="Shift Leader" onclick="upgrade('shiftLeader');">
+					<div class="label">Required Influence: <span id="shiftLeader.Cost">100</span></div>
+				</div>
+				<div id="assistantMan2" class="promotion">
+					<input type="button" disabled="disabled" id="assistantMan" class="btn" value="Assistant Manager" onclick="upgrade('assistantMan');">
+					<div class="label">Required Influence: <span id="assistantMan.Cost">300</span></div>
+				</div>
+				<div id="generalMan2" class="promotion">
+					<input type="button" disabled="disabled" id="generalMan" class="btn" value="General Manager" onclick="upgrade('generalMan');">
+					<div class="label">Required Influence: <span id="generalMan.Cost">600</span></div>
+				</div>
+			</div>
+			
+			<div id="tab2" class="tab">
+			<h1>Extra Income</h1>
+				<div id="bitcoinMiner2">
+					<input type="button" disabled="disabled" id="bitcoinMiner" class="btn" value="Bitcoin Miner" onclick="build('bitcoinMiner');">
+					<div class="label">Cost: <span id="bitcoinMiner.cost">2,500</span></div>
+				</div>
+				<div id="stockTradeBots2">
+					<input type="button" disabled="disabled" id="stockTradeBots" class="btn" value="Stock Trading Bots" onclick="build('stockTradeBots');">
+					<div class="label">Cost: <span id="stockTradeBots.cost">6,000</span></div>
+				</div>
+			<h1>Side Jobs</h1>
+			</div>
+			
+			<!-- <div id="tab3" class="tab"> -->
+			<!-- <h1>COMING SOON</h1> -->
+			<!-- </div> -->
+			
+			<div id="tab4" class="tab">
+			<h1>Stats</h1>
+				<h1>COMING SOON</h1>
+			</div>
+			
+			<div id="tab5" class="tab">
+			<h1>Options</h1>
+				<input type="button" class="btn" value="Help/Instructions" onclick="$('[data-remodal-id=modal]').remodal().open()">
+				<h1>Save/Load</h1>
+				<input type="button" class="btn save" value="Save">
+				<input type="button" class="btn load" value="Load">
+				<input type="button" class="btn reset" value="Reset">
+				<h1>Credits</h1>
+				<span>Created by Erocktion, but for the people. Credits to Nick_A_Llama, ethan, DucksGoMooful, adriax and Rose for help and suggestions. Some snippets used from StackOverflow.com, but changed accordingly.
+		<br><a href="http://www.freepik.com/free-photos-vectors/business">Money Business vector created by Bakar015 - Freepik.com</a></span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-4 clicker" onclick="getMoney();">
+		<div class="click">
+			<img src="http://igt.bitballoon.com/images/click.png" alt="" height="100%" width="100%" style="visibility:hidden"/>
+		</div>
+	</div>
+
+</body>
+</html>
